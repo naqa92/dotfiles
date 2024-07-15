@@ -1,9 +1,11 @@
 #Basics
 #alias ls="exa --icons --group-directories-first"
 #alias ll="exa -l --icons --no-user --git -s time"
+
 alias vi='nvim'
 alias vim='nvim'
 alias modvim='vi ~/.config/nvim/init.vim'
+
 alias sshconfig='cat ~/.ssh/config'
 alias modssh='vi ~/.ssh/config'
 alias modzsh='vi ~/.zshrc'
@@ -26,3 +28,6 @@ alias contexts='kubectl config get-contexts'
 alias awsconfig='cat ~/.aws/config'
 alias awslogin='aws sso login; aws configure list-profiles'
 alias awsprofiles='aws configure list-profiles'
+
+# Docker
+alias dockip='for i in $(docker ps -q); do docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} - {{.Name}}" $i;done'
