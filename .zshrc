@@ -1,24 +1,45 @@
 # ENV Variables/PATHs
-export ZSH="${HOME}/.oh-my-zsh"
-export GOPATH="${HOME}/go"
-export EDITOR=vim
-export KUBE_EDITOR=vim
-export AWS_CLI_AUTO_PROMPT=on-partial
-export PATH=/usr/local/bin/:$PATH:$HOME/bin
-export PATH="${PATH}:${HOME}/.krew/bin"
-export KUBECONFIG=~/.kube/config
+export ZSH="$HOME/.oh-my-zsh"
+
+export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
+export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/Naqa/Desktop/HOMELAB/wsl"
+
+# ansible+pip binaries
+if ! echo $PATH | grep -q "/home/naqa/.local/bin"; then
+    export PATH=$PATH:/home/naqa/.local/bin
+fi
+
+if ! echo $PATH | grep -q "/mnt/c/Program Files/Oracle/VirtualBox"; then
+    export PATH="$PATH:/mnt/c/Program Files/Oracle/VirtualBox"
+fi
+
+# ${=do}
+export do="--dry-run=client -o yaml"
 
 # ZSH Setup
-plugins=(zsh-z zsh-autosuggestions aws git brew docker docker-compose gradle terraform zsh-syntax-highlighting)
+plugins=(
+    zsh-z
+    git
+    kubectl
+    vagrant
+    sudo
+    docker
+    docker-compose
+    ansible
+    terraform
+    zsh-autosuggestions
+    you-should-use
+    zsh-syntax-highlighting
+)
+
 source $ZSH/oh-my-zsh.sh
-autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /usr/local/bin/terraform terraform
+
+# Disable Windows beep
+setopt NO_BEEP
+
+# AWS autocomplete
 autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
-
-# This needs to be after the autoloads
-kubectl completion zsh > ~/.kubectl-completion
-source ~/.kubectl-completion
 complete -C '/usr/local/bin/aws_completer' aws
 
 # Env Variables
