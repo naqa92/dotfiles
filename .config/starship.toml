@@ -32,21 +32,21 @@ disabled = false
 format = ''
 style = 'bold blue'
 [aws.region_aliases]
-ap-southeast-2 = 'au'
-us-east-1 = 'va'
+us-east-1 = 'us'
+eu-west-3 = 'eu'
 
 # Shows current directory
 [directory]
 truncation_length = 20
 truncation_symbol = "…/"
-home_symbol = " ~"
+home_symbol = "🏠 ~"
 read_only_style = "197"
 read_only = "  "
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 # Shows current git branch
 [git_branch]
-symbol = " "
+symbol = "↴ "
 format = "[$symbol$branch]($style) "
 # truncation_length = 4
 truncation_symbol = "…/"
@@ -57,15 +57,15 @@ style = "bold green"
 format = '[\($all_status$ahead_behind\)]($style) '
 style = "bold green"
 conflicted = "🏳"
-up_to_date = ""
+up_to_date = " "
 untracked = " "
 ahead = "⇡${count}"
 diverged = "⇕⇡${ahead_count}⇣${behind_count}"
 behind = "⇣${count}"
-stashed = " "
-modified = " "
+stashed = "🕵 "
+modified = "📝 "
 staged = '[++\($count\)](green)'
-renamed = "襁 "
+renamed = "✏️ "
 deleted = " "
 
 # Shows kubernetes context and namespace
