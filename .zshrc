@@ -16,6 +16,9 @@ fi
 # ${=do}
 export do="--dry-run=client -o yaml"
 
+# Theme
+ZSH_THEME="agnoster"
+
 # ZSH Setup
 plugins=(
     zsh-z
@@ -49,12 +52,6 @@ complete -C '/usr/local/bin/aws_completer' aws
 # Aliases and Functions
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 [[ -f ~/.zsh/functions.zsh ]] && source ~/.zsh/functions.zsh
-
-
-# Setup Starship prompt
-[[ -f ~/.zsh/starship.zsh ]] && source ~/.zsh/starship.zsh
-eval "$(starship init zsh)"
-
 
 # Setup Fuzzy Finder
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
