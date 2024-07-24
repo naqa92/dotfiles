@@ -1,8 +1,6 @@
 # ENV Variables/PATHs
 export ZSH="$HOME/.oh-my-zsh"
-
 export VAGRANT_WSL_ENABLE_WINDOWS_ACCESS="1"
-export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/Naqa/Desktop/HOMELAB/wsl"
 
 # ansible+pip binaries
 if ! echo $PATH | grep -q "/home/naqa/.local/bin"; then
