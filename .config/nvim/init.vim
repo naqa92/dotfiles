@@ -7,6 +7,13 @@ set smarttab
 set softtabstop=2
 set belloff=all
 
+" enable CTRL+C for copying text to system clipboard
+nnoremap <C-c> "+y
+vnoremap <C-c> "+y
+
+" set default register to unnamed plus
+set clipboard=unnamedplus
+
 call plug#begin()
 
 Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
@@ -32,3 +39,6 @@ let g:NERDTreeDirArrowCollapsible="~"
 
 " :Tagbar
 nmap <F8> :TagbarToggle<CR>
+
+" Enter insert mode on startup
+autocmd VimEnter * startinsert
