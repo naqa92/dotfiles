@@ -5,3 +5,5 @@ set shiftwidth=2
 set smarttab
 set softtabstop=2
 set belloff=all
+set expandtab
+syntax on
