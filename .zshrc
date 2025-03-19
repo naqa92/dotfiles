@@ -2,8 +2,8 @@ export ZSH="$HOME/.oh-my-zsh" # zsh
 
 # Function to add a directory to PATH without duplicates
 add_to_path() {
-  if [[ ":$PATH:" != *":$dir:"* ]]; then
-    PATH="$dir:$PATH"
+  if [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1:$PATH"
   fi
 }
 
