@@ -3,6 +3,7 @@ alias ls="exa --icons --group-directories-first"
 alias ll="exa -l --icons -s time"
 alias la="exa -a --icons"
 
+alias cat='batcat -pP'
 alias vi='vim'
 
 alias sshconfig='cat ~/.ssh/config'
