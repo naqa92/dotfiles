@@ -2,7 +2,7 @@
 
 ### Basic tools
 ```sh
-sudo apt install -y zip unzip curl dnsutils iftop software-properties-common git vim tree net-tools telnet gnupg2 peco exa python3-pip pipx tmux
+sudo apt install -y zip unzip curl dnsutils iftop software-properties-common git vim tree net-tools telnet gnupg2 peco exa python3-pip pipx tmux bat
 ```
 
 ### Gum (for shell scripts)
