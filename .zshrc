@@ -44,9 +44,6 @@ autoload bashcompinit && bashcompinit
 autoload -Uz compinit && compinit
 complete -C '/usr/local/bin/aws_completer' aws
 
-# pipx autocomplete
-eval "$(register-python-argcomplete pipx)"
-
 # gitlab-ci-local autocomplete
 _gitlab-ci-local_yargs_completions()
 {
