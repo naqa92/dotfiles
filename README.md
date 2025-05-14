@@ -185,3 +185,22 @@ z # Show all paths
 z $DIR_PATH # Searches frequently access directory
 z --add $DIR_PATH # Add an additional path (ex: /mnt/c/Users/$USER/Desktop)
 ```
+
+### Tmux
+
+Reload config
+
+```sh
+tmux source-file ~/.tmux.conf
+```
+
+Raccourcis
+
+```sh
+% : split vertically in pannels
+" : split horizontally in pannels
+alt + flèche : resize pannels
+o : change pannel
+z : panel in full screen
+```
+
