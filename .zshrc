@@ -59,11 +59,6 @@ compdef _gitlab-ci-local_yargs_completions gitlab-ci-local
 # Fuzzy Finder
 source <(fzf --zsh)
 
-# Auto-launch tmux if not already inside tmux
-if command -v tmux >/dev/null; then
-  [ -z "$TMUX" ] && exec tmux
-fi
-
 # Custom ENV
 [[ -f ~/.zsh/env.zsh ]] && source ~/.zsh/env.zsh
 
