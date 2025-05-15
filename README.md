@@ -2,7 +2,7 @@
 
 ### Basic tools
 ```sh
-sudo apt install -y zip unzip curl dnsutils iftop software-properties-common git vim tree net-tools telnet gnupg2 peco exa python3-pip pipx tmux jq yq bat
+sudo apt install -y zip unzip curl dnsutils iftop software-properties-common git vim tree net-tools telnet gnupg2 peco exa python3-pip pipx jq yq bat
 ```
 
 ### Gum (for shell scripts)
@@ -186,21 +186,15 @@ z $DIR_PATH # Searches frequently access directory
 z --add $DIR_PATH # Add an additional path (ex: /mnt/c/Users/$USER/Desktop)
 ```
 
-### Tmux
-
-Reload config
-
-```sh
-tmux source-file ~/.tmux.conf
-```
+### Split Windows Terminal
 
 Raccourcis
 
 ```sh
-% : split vertically in pannels
-" : split horizontally in pannels
-alt + flèche : resize pannels
-o : change pannel
-z : panel in full screen
+Splitter verticalement : Alt + Shift + +
+Splitter horizontalement : Alt + Shift + -
+Changer de panneau actif : Alt + Flèche directionnelle (← ↑ ↓ →)
+Redimensionner les panneaux : Alt + Shift + Flèche directionnelle (← ↑ ↓ →)
+Fermer le panneau actif : Ctrl + Maj + W
 ```
 
