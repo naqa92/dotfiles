@@ -182,7 +182,7 @@ prompt_kube_ps1() {
   local kube_segment="$(kube_ps1)"
   # Si kube_ps1 retourne du contenu, affiche le segment
   if [[ -n $kube_segment ]]; then
-    prompt_segment $NORD0 default "$kube_segment"
+    prompt_segment black default "$kube_segment"
   fi
 }
 
