@@ -6,3 +6,6 @@ export VAGRANT_WSL_WINDOWS_ACCESS_USER_HOME_PATH="/mnt/c/Users/$USER/"
 
 # Kubernetes 
 export do="--dry-run=client -o yaml"  # ${=do}
+
+# venv (géré par prompt agnoster)
+export VIRTUAL_ENV_DISABLE_PROMPT=1
