@@ -1,59 +1,40 @@
-# vim:ft=zsh ts=2 sw=2 sts=2
-#
-# agnoster's Theme - https://gist.github.com/3712874
-# A Powerline-inspired theme for ZSH
-#
-# # README
-#
-# In order for this theme to render correctly, you will need a
-# [Powerline-patched font](https://github.com/Lokaltog/powerline-fonts).
-# Make sure you have a recent version: the code points that Powerline
-# uses changed in 2012, and older versions will display incorrectly,
-# in confusing ways.
-#
-# In addition, I recommend the
-# [Solarized theme](https://github.com/altercation/solarized/) and, if you're
-# using it on Mac OS X, [iTerm 2](https://iterm2.com/) over Terminal.app -
-# it has significantly better color fidelity.
-#
-# If using with "light" variant of the Solarized color schema, set
-# SOLARIZED_THEME variable to "light". If you don't specify, we'll assume
-# you're using the "dark" variant.
-#
-# # Goals
-#
-# The aim of this theme is to only show you *relevant* information. Like most
-# prompts, it will only show git information when in a git working directory.
-# However, it goes a step further: everything from the current user and
-# hostname to whether the last call exited with an error to whether background
-# jobs are running in this shell will all be displayed automatically when
-# appropriate.
-
-### Segment drawing
-# A few utility functions to make it easy and re-usable to draw segmented prompts
+# Palette Nord
+NORD0="#2E3440"  # Fond noir/gris foncé
+NORD1="#3B4252"  # Gris foncé
+NORD2="#434C5E"  # Gris
+NORD3="#4C566A"  # Gris clair
+NORD4="#D8DEE9"  # Blanc cassé
+NORD5="#E5E9F0"  # Blanc neige
+NORD6="#ECEFF4"  # Blanc brillant
+NORD7="#8FBCBB"  # Cyan glacé
+NORD8="#88C0D0"  # Bleu ciel
+NORD9="#81A1C1"  # Bleu
+NORD10="#5E81AC" # Bleu foncé
+NORD11="#BF616A" # Rouge
+NORD12="#D08770" # Orange
+NORD13="#EBCB8B" # Jaune
+NORD14="#A3BE8C" # Vert
+NORD15="#B48EAD" # Violet
 
 CURRENT_BG='NONE'
 
+KUBE_PS1_SYMBOL_COLOR=blue
+KUBE_PS1_CTX_COLOR=magenta
+KUBE_PS1_NS_COLOR=cyan
+KUBE_PS1_SYMBOL_CUSTOM=img
+KUBE_PS1_PREFIX='['
+KUBE_PS1_SUFFIX=']'
+
 case ${SOLARIZED_THEME:-dark} in
-    light) CURRENT_FG='white';;
-    *)     CURRENT_FG='black';;
+    light) CURRENT_FG=$NORD6;;
+    *)     CURRENT_FG=$NORD0;;
 esac
 
 # Special Powerline characters
 
 () {
   local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-  # NOTE: This segment separator character is correct.  In 2012, Powerline changed
-  # the code points they use for their special characters. This is the new code point.
-  # If this is not working for you, you probably have an old version of the
-  # Powerline-patched fonts installed. Download and install the new version.
-  # Do not submit PRs to change this unless you have reviewed the Powerline code point
-  # history and have new information.
-  # This is defined using a Unicode escape sequence so it is unambiguously readable, regardless of
-  # what font the user is viewing this source code in. Do not replace the
-  # escape sequence with a single literal character.
-  # Do not change this! Do not make it '\u2b80'; that is the old, wrong code point.
-  SEGMENT_SEPARATOR=$'\ue0b0'
+  SEGMENT_SEPARATOR=$'\ue0b4'
 }
 
 # Begin a segment
@@ -83,6 +64,11 @@ prompt_end() {
   CURRENT_BG=''
 }
 
+# Ajoute un saut de ligne avant l'affichage du prompt
+precmd() {
+  print ""
+}
+
 ### Prompt components
 # Each component will draw itself, and hide itself if no information needs to be shown
 
@@ -102,7 +88,7 @@ prompt_git() {
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
-    PL_BRANCH_CHAR=$'\ue0a0'         # 
+    PL_BRANCH_CHAR=$'\uf126'
   }
   local ref dirty mode repo_path
 
@@ -113,9 +99,9 @@ prompt_git() {
     ref="◈ $(command git describe --exact-match --tags HEAD 2> /dev/null)" || \
     ref="➦ $(command git rev-parse --short HEAD 2> /dev/null)"
     if [[ -n $dirty ]]; then
-      prompt_segment yellow black
+      prompt_segment $NORD13 $NORD0
     else
-      prompt_segment green $CURRENT_FG
+      prompt_segment $NORD14 $CURRENT_FG
     fi
 
     local ahead behind
@@ -152,78 +138,15 @@ prompt_git() {
   fi
 }
 
-prompt_bzr() {
-  (( $+commands[bzr] )) || return
-
-  # Test if bzr repository in directory hierarchy
-  local dir="$PWD"
-  while [[ ! -d "$dir/.bzr" ]]; do
-    [[ "$dir" = "/" ]] && return
-    dir="${dir:h}"
-  done
-
-  local bzr_status status_mod status_all revision
-  if bzr_status=$(command bzr status 2>&1); then
-    status_mod=$(echo -n "$bzr_status" | head -n1 | grep "modified" | wc -m)
-    status_all=$(echo -n "$bzr_status" | head -n1 | wc -m)
-    revision=${$(command bzr log -r-1 --log-format line | cut -d: -f1):gs/%/%%}
-    if [[ $status_mod -gt 0 ]] ; then
-      prompt_segment yellow black "bzr@$revision ✚"
-    else
-      if [[ $status_all -gt 0 ]] ; then
-        prompt_segment yellow black "bzr@$revision"
-      else
-        prompt_segment green black "bzr@$revision"
-      fi
-    fi
-  fi
-}
-
-prompt_hg() {
-  (( $+commands[hg] )) || return
-  local rev st branch
-  if $(command hg id >/dev/null 2>&1); then
-    if $(command hg prompt >/dev/null 2>&1); then
-      if [[ $(command hg prompt "{status|unknown}") = "?" ]]; then
-        # if files are not added
-        prompt_segment red white
-        st='±'
-      elif [[ -n $(command hg prompt "{status|modified}") ]]; then
-        # if any modification
-        prompt_segment yellow black
-        st='±'
-      else
-        # if working copy is clean
-        prompt_segment green $CURRENT_FG
-      fi
-      echo -n ${$(command hg prompt "☿ {rev}@{branch}"):gs/%/%%} $st
-    else
-      st=""
-      rev=$(command hg id -n 2>/dev/null | sed 's/[^-0-9]//g')
-      branch=$(command hg id -b 2>/dev/null)
-      if command hg st | command grep -q "^\?"; then
-        prompt_segment red black
-        st='±'
-      elif command hg st | command grep -q "^[MA]"; then
-        prompt_segment yellow black
-        st='±'
-      else
-        prompt_segment green $CURRENT_FG
-      fi
-      echo -n "☿ ${rev:gs/%/%%}@${branch:gs/%/%%}" $st
-    fi
-  fi
-}
-
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment blue $CURRENT_FG '%c'
+  prompt_segment $NORD10 $CURRENT_FG '\uf115  %c'
 }
 
 # Virtualenv: current working virtualenv
 prompt_virtualenv() {
-  if [[ -n "$VIRTUAL_ENV" && -n "$VIRTUAL_ENV_DISABLE_PROMPT" ]]; then
-    prompt_segment blue black "(${VIRTUAL_ENV:t:gs/%/%%})"
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+    prompt_segment $NORD7 $NORD0 "🐍 ${VIRTUAL_ENV:t}"
   fi
 }
 
@@ -234,11 +157,11 @@ prompt_virtualenv() {
 prompt_status() {
   local -a symbols
 
-  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{red}%}✘"
-  [[ $UID -eq 0 ]] && symbols+="%{%F{yellow}%}⚡"
-  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{cyan}%}⚙"
+  [[ $RETVAL -ne 0 ]] && symbols+="%{%F{$NORD11}%}✘"
+  [[ $UID -eq 0 ]] && symbols+="%{%F{$NORD13}%}⚡"
+  [[ $(jobs -l | wc -l) -gt 0 ]] && symbols+="%{%F{$NORD7}%}⚙"
 
-  [[ -n "$symbols" ]] && prompt_segment black default "$symbols"
+  [[ -n "$symbols" ]] && prompt_segment $NORD0 default "$symbols"
 }
 
 #AWS Profile:
@@ -249,8 +172,8 @@ prompt_status() {
 prompt_aws() {
   [[ -z "$AWS_PROFILE" || "$SHOW_AWS_PROMPT" = false ]] && return
   case "$AWS_PROFILE" in
-    *-prod|*production*) prompt_segment red yellow  "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
-    *) prompt_segment green black "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *-prod|*production*) prompt_segment $NORD11 $NORD13 "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
+    *) prompt_segment $NORD14 $NORD0 "AWS: ${AWS_PROFILE:gs/%/%%}" ;;
   esac
 }
 
@@ -259,7 +182,7 @@ prompt_kube_ps1() {
   local kube_segment="$(kube_ps1)"
   # Si kube_ps1 retourne du contenu, affiche le segment
   if [[ -n $kube_segment ]]; then
-    prompt_segment black default "$kube_segment"
+    prompt_segment $NORD0 default "$kube_segment"
   fi
 }
 
@@ -269,13 +192,12 @@ build_prompt() {
   prompt_status
   prompt_virtualenv
   prompt_aws
-  prompt_kube_ps1
   #prompt_context
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
+  prompt_kube_ps1
   prompt_end
 }
 
-PROMPT='%{%f%b%k%}$(build_prompt) '
+PROMPT='%{%f%b%k%}$(build_prompt)
+%F{$NORD9}➜%f '
