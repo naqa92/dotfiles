@@ -19,13 +19,12 @@ alias pip='pip3'
 alias python='python3'
 
 # Kubernetes
-alias k='kubecolor'
-alias kg='kubecolor get'
-alias kgn='kubecolor get nodes'
+alias kg='kubectl get'
+alias kgn='kubectl get nodes'
 alias h='helm'
 alias kx='kubectx'
 alias kn='kubens'
-alias contexts='kubecolor config get-contexts'
+alias contexts='kubectl config get-contexts'
 
 # AWS
 alias awsconfig='cat ~/.aws/config'
