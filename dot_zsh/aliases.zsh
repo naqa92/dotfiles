@@ -1,9 +1,9 @@
 #Basics
-alias ls="exa --icons --group-directories-first"
-alias ll="exa -l --icons -s time"
-alias la="exa -a --icons"
+alias ls="eza --icons --group-directories-first"
+alias ll="eza -l --icons -s time"
+alias la="eza -a --icons"
 
-alias cat='batcat --paging never --theme base16 --style plain'
+alias cat='bat --paging never --theme base16 --style plain'
 alias vi='vim'
 
 alias sshconfig='cat ~/.ssh/config'

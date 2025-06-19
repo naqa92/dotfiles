@@ -1,5 +1,8 @@
 export ZSH="$HOME/.oh-my-zsh" # zsh
 
+# Brew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 # Function to add a directory to PATH without duplicates
 add_to_path() {
   if [[ ":$PATH:" != *":$1:"* ]]; then
@@ -8,7 +11,7 @@ add_to_path() {
 }
 
 add_to_path "${KREW_ROOT:-$HOME/.krew}/bin" # krew
-add_to_path "/usr/local/go/bin" # go
+add_to_path "/home/linuxbrew/.linuxbrew/opt/libpq/bin" # psql
 add_to_path "$HOME/.local/bin" # pipx packages + chezmoi
 add_to_path "/mnt/c/Program Files/Oracle/VirtualBox" # vbox
 
