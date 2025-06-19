@@ -22,8 +22,8 @@ KUBE_PS1_SYMBOL_COLOR=blue
 KUBE_PS1_CTX_COLOR=magenta
 KUBE_PS1_NS_COLOR=cyan
 KUBE_PS1_SYMBOL_CUSTOM=img
-KUBE_PS1_PREFIX='['
-KUBE_PS1_SUFFIX=']'
+KUBE_PS1_PREFIX=''
+KUBE_PS1_SUFFIX=''
 
 case ${SOLARIZED_THEME:-dark} in
     light) CURRENT_FG=$NORD6;;
@@ -35,6 +35,20 @@ esac
 () {
   local LC_ALL="" LC_CTYPE="en_US.UTF-8"
   SEGMENT_SEPARATOR=$'\ue0b4'
+  LEFT_SEGMENT_SEPARATOR=$'\ue0b6'
+}
+
+prompt_start() {
+  local bg fg
+  [[ -n $1 ]] && bg="%K{$1}" || bg="%k"
+  [[ -n $2 ]] && fg="%F{$2}" || fg="%f"
+  if [[ $CURRENT_BG != 'NONE' && $1 != $CURRENT_BG ]]; then
+    echo -n "%{$bg%F{$CURRENT_BG}%}$LEFT_SEGMENT_SEPARATOR%{$fg%}"
+  else
+    echo -n "%{$bg%}%{$fg%}"
+  fi
+  CURRENT_BG=$1
+  [[ -n $3 ]] && echo -n "$3"
 }
 
 # Begin a segment
@@ -75,7 +89,7 @@ precmd() {
 # Context: user@hostname (who am I and where am I)
 prompt_context() {
   if [[ "$USERNAME" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
-    prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+    prompt_segment $NORD4 $NORD0 "%(!.%{%F{yellow}%}.)%n@%m"
   fi
 }
 
@@ -140,7 +154,7 @@ prompt_git() {
 
 # Dir: current working directory
 prompt_dir() {
-  prompt_segment $NORD10 $CURRENT_FG '\uf115  %c'
+  prompt_segment $NORD10 $NORD0 '\uf115  %c'
 }
 
 # Virtualenv: current working virtualenv
@@ -182,22 +196,23 @@ prompt_kube_ps1() {
   local kube_segment="$(kube_ps1)"
   # Si kube_ps1 retourne du contenu, affiche le segment
   if [[ -n $kube_segment ]]; then
-    prompt_segment black default "$kube_segment"
+    prompt_segment $NORD3 $NORD0 "$kube_segment"
   fi
 }
 
 ## Main prompt
 build_prompt() {
   RETVAL=$?
+  prompt_start
   prompt_status
   prompt_virtualenv
   prompt_aws
   #prompt_context
+  prompt_kube_ps1
   prompt_dir
   prompt_git
-  prompt_kube_ps1
   prompt_end
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt)
-%F{$NORD14}➜%f '
+%F{$NORD14} ➜%f '
