@@ -12,7 +12,7 @@ add_to_path() {
 
 add_to_path "${KREW_ROOT:-$HOME/.krew}/bin" # krew
 add_to_path "/home/linuxbrew/.linuxbrew/opt/libpq/bin" # psql
-add_to_path "$HOME/.local/bin" # pipx packages + chezmoi
+add_to_path "$HOME/.local/bin" # pipx packages
 add_to_path "/mnt/c/Program Files/Oracle/VirtualBox" # vbox
 
 export PATH
