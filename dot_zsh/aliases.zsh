@@ -2,18 +2,15 @@
 alias ls="eza --icons --group-directories-first"
 alias ll="eza -l --icons -s time"
 alias la="eza -a --icons"
-
 alias cat='bat --paging never --theme base16 --style plain'
 alias vi='vim'
-
-alias sshconfig='cat ~/.ssh/config'
-alias modssh='vi ~/.ssh/config'
-alias modzsh='vi ~/.zshrc'
-alias modbash='vi ~/.zshrc'
-alias modalias='vi ~/.zsh/aliases.zsh'
-alias modfunc='~/.zsh/functions.zsh'
-alias modaws='vi ~/.aws/config'
-alias hosts='ansible-inventory --graph'
+alias catssh='cat ~/.ssh/config'
+alias vimssh='vim ~/.ssh/config'
+alias vimzsh='vim ~/.zshrc'
+alias vimbash='vim ~/.bashrc'
+alias vimaliases='vim ~/.zsh/aliases.zsh'
+alias vimenv='vim ~/.zsh/env.zsh'
+alias ansible-hosts='ansible-inventory --graph'
 alias grep='grep -i --color'
 alias pip='pip3'
 alias python='python3'
@@ -26,9 +23,10 @@ alias kx='kubectx'
 alias kn='kubens'
 
 # AWS
-alias awsconfig='cat ~/.aws/config'
-alias awslogin='aws sso login; aws configure list-profiles'
-alias awsprofiles='aws configure list-profiles'
+alias cataws='cat ~/.aws/config'
+alias vimaws='vim ~/.aws/config'
+alias loginaws='aws sso login; aws configure list-profiles'
+alias profilesaws='aws configure list-profiles'
 
 # Docker
 alias dockip='for i in $(docker ps -q); do docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} - {{.Name}}" $i;done'
