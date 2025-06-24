@@ -30,3 +30,7 @@ alias profilesaws='aws configure list-profiles'
 
 # Docker
 alias dockip='for i in $(docker ps -q); do docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} - {{.Name}}" $i;done'
+
+# Gitlab
+alias glab-create-formation='glab project create --name $(basename $(pwd)) --group naqa92-formations --private && git init --initial-branch=main && git remote add origin git@gitlab.com:naqa92-formations/$(basename $(pwd)).git && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92-formations/$(basename $(pwd))"'
+alias glab-create-project='glab project create --name $(basename $(pwd)) --private && git init --initial-branch=main && git remote add origin git@gitlab.com:naqa92/$(basename $(pwd)).git && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
