@@ -18,7 +18,7 @@ add_to_path "/mnt/c/Program Files/Oracle/VirtualBox" # vbox
 export PATH
 
 # Theme
-ZSH_THEME="agnoster"
+ZSH_THEME="custom-agnoster"
 
 # ZSH Setup
 plugins=(
