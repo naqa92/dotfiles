@@ -164,6 +164,13 @@ prompt_virtualenv() {
   fi
 }
 
+# Devbox: current devbox shell
+prompt_devbox() {
+  if [[ -n "$DEVBOX_SHELL_ENABLED" ]]; then
+    prompt_segment $NORD15 $NORD0 "📦 devbox"
+  fi
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -206,6 +213,7 @@ build_prompt() {
   prompt_start
   prompt_status
   prompt_virtualenv
+  prompt_devbox
   prompt_aws
   #prompt_context
   prompt_kube_ps1
