@@ -212,11 +212,11 @@ build_prompt() {
   RETVAL=$?
   prompt_start
   prompt_status
+  prompt_kube_ps1
   prompt_virtualenv
   prompt_devbox
   prompt_aws
   #prompt_context
-  prompt_kube_ps1
   prompt_dir
   prompt_git
   prompt_end
