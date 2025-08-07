@@ -34,3 +34,6 @@ alias dockip='for i in $(docker ps -q); do docker inspect -f "{{range .NetworkSe
 # Gitlab
 alias glab-create-formation='glab project create --name $(basename $(pwd)) --group naqa92-formations --private && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92-formations/$(basename $(pwd))"'
 alias glab-create-project='glab project create --name $(basename $(pwd)) --private && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
+
+# Github
+alias gh-create-project='git add . && git commit -m "Initial commit" && gh repo create $(basename $(pwd)) --private --source=. --remote=origin --push && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
