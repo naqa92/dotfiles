@@ -36,4 +36,4 @@ alias glab-create-formation='glab project create --name $(basename $(pwd)) --gro
 alias glab-create-project='glab project create --name $(basename $(pwd)) --private && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
 
 # Github
-alias gh-create-project='git add . && git commit -m "Initial commit" && gh repo create $(basename $(pwd)) --private --source=. --remote=origin --push && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
+alias gh-create-project='git init && git add . && git commit -m "Initial commit" && gh repo create $(basename $(pwd)) --private --source=. --remote=origin --push && git remote set-url origin git@github.com:naqa92/$(basename $(pwd)).git && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
