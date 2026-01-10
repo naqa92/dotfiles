@@ -11,6 +11,7 @@ add_to_path() {
 
 add_to_path "${KREW_ROOT:-$HOME/.krew}/bin" # krew
 add_to_path "/mnt/c/Program Files/Oracle/VirtualBox" # vbox
+add_to_path "/home/linuxbrew/.linuxbrew/opt/libpq/bin" # libpq
 
 export PATH
 
