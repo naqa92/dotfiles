@@ -14,6 +14,7 @@ alias ansible-hosts='ansible-inventory --graph'
 alias grep='grep -i --color'
 alias pip='pip3'
 alias python='python3'
+alias cl='claude'
 
 # Kubernetes
 alias kg='kubecolor get'
@@ -32,7 +33,7 @@ alias profilesaws='aws configure list-profiles'
 alias dockip='for i in $(docker ps -q); do docker inspect -f "{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}} - {{.Name}}" $i;done'
 
 # Gitlab
-alias glab-create-formation='glab project create --name $(basename $(pwd)) --group naqa92-formations --private && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92-formations/$(basename $(pwd))"'
+alias glab-create-formation='glab project create --name $(basename $(pwd)) --group naqa92-formations --private && glab api "projects/naqa92-formations%2F$(basename $(pwd))" -X PUT --raw-field "ci_push_repository_for_job_token_allowed=true" > /dev/null && git add . && git commit -m "Initial commit" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92-formations/$(basename $(pwd)) (CI push activé)"'
 alias glab-create-project='glab project create --name $(basename $(pwd)) --private && git add . && git commit -m "Initial commit [ci skip]" && git push --set-upstream origin main && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
 
 # Github
