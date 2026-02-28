@@ -105,3 +105,4 @@ atuin-setup
 
 [[ -f ~/.zsh/env.zsh ]] && source ~/.zsh/env.zsh # custom env
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh # custom aliases
+
