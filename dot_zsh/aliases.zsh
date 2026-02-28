@@ -24,6 +24,7 @@ alias kx='kubectx'
 alias kn='kubens'
 alias gonzo='k stern . | gonzo'
 alias gonzo-vmlogs='gonzo --vmlogs-url="http://localhost:9428" --vmlogs-query="*"'
+alias popeye='POPEYE_REPORT_DIR=$(pwd) popeye -A --save --out html --output-file report.html'
 
 # AWS
 alias cataws='cat ~/.aws/config'
