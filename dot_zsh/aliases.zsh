@@ -44,5 +44,5 @@ alias glab-create-project='glab project create --name $(basename $(pwd)) --priva
 alias gh-create-project='git init && git add . && git commit -m "Initial commit [ci skip]" && gh repo create $(basename $(pwd)) --private --source=. --remote=origin --push && git remote set-url origin git@github.com:naqa92/$(basename $(pwd)).git && echo "Projet créé et code poussé sur naqa92/$(basename $(pwd))"'
 
 # Claude
-alias claude-update-commands='rsync -av /home/naqa/.claude/commands/ /home/naqa/formation-ia/.claude/commands/ && git -C ~/formation-ia add . && git -C ~/formation-ia diff --cached --quiet || (git -C ~/formation-ia commit -m "update commands" && git -C ~/formation-ia push)'
-alias claude-update-skills='rsync -av /home/naqa/.claude/skills/ /home/naqa/formation-ia/.claude/skills/ && git -C ~/formation-ia add . && git -C ~/formation-ia diff --cached --quiet || (git -C ~/formation-ia commit -m "update skills" && git -C ~/formation-ia push)'
+alias claude-update-commands='rsync -av /home/naqa/.claude/commands/ /home/naqa/formation-ia/claude/.claude/commands/ && git -C ~/formation-ia add . && git -C ~/formation-ia diff --cached --quiet || (git -C ~/formation-ia commit -m "update commands" && git -C ~/formation-ia push)'
+alias claude-update-skills='rsync -av /home/naqa/.claude/skills/ /home/naqa/formation-ia/claude/.claude/skills/ && git -C ~/formation-ia add . && git -C ~/formation-ia diff --cached --quiet || (git -C ~/formation-ia commit -m "update skills" && git -C ~/formation-ia push)'
