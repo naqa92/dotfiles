@@ -15,6 +15,7 @@ alias grep='grep -i --color'
 alias pip='pip3'
 alias python='python3'
 alias cl='claude'
+alias oc='opencode'
 
 # Kubernetes
 alias kg='kubecolor get'
