@@ -12,3 +12,6 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1
 
 # devbox (géré par prompt agnoster)
 export DEVBOX_NO_PROMPT=true
+
+# WSL GPU (librocdxg)
+export HSA_ENABLE_DXG_DETECTION=1
