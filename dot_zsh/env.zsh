@@ -15,3 +15,6 @@ export DEVBOX_NO_PROMPT=true
 
 # WSL GPU (librocdxg)
 export HSA_ENABLE_DXG_DETECTION=1
+
+# IOS Apple Devices
+export USBMUXD_SOCKET_ADDRESS="tcp://127.0.0.1:27015"
