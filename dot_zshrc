@@ -20,6 +20,8 @@ add_to_path "${KREW_ROOT:-$HOME/.krew}/bin" # krew
 add_to_path "/mnt/c/Program Files/Oracle/VirtualBox" # vbox
 add_to_path "/home/linuxbrew/.linuxbrew/opt/libpq/bin" # libpq
 add_to_path "$HOME/.local/bin" # pipx
+add_to_path "$HOME/.cargo/bin" # rustup (before Homebrew cargo)
+add_to_path "$HOME/.zsh/bin" # commandes custom
 
 export PATH
 
@@ -106,3 +108,6 @@ atuin-setup
 [[ -f ~/.zsh/env.zsh ]] && source ~/.zsh/env.zsh # custom env
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh # custom aliases
 
+
+# fal.ai (video-gen YouTube) - cle lue depuis le .env du repo, source unique
+export FAL_KEY="$(grep -m1 '^FAL_KEY=' /home/naqa/formation-youtube/.env 2>/dev/null | cut -d= -f2- | tr -d '"')"
