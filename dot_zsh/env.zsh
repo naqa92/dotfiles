@@ -15,3 +15,6 @@ export DEVBOX_NO_PROMPT=true
 
 # WSL GPU (librocdxg)
 export HSA_ENABLE_DXG_DETECTION=1
+
+# Jetons de CLI d'agents, lus depuis ~/.config/brain-private (hors repos)
+[ -r ~/.config/brain-private/notion-token ] && export NOTION_API_TOKEN="$(<~/.config/brain-private/notion-token)"

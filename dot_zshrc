@@ -108,3 +108,6 @@ atuin-setup
 [[ -f ~/.zsh/env.zsh ]] && source ~/.zsh/env.zsh # custom env
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh # custom aliases
 
+
+# sentry
+fpath=("/home/naqa/.local/share/zsh/site-functions" $fpath); if [[ -o interactive ]]; then if ! (( $+functions[compdef] )); then autoload -Uz compinit; compinit; fi; autoload -Uz _sentry; compdef _sentry sentry; fi
